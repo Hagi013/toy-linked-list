@@ -2,69 +2,102 @@ use std::mem::replace;
 use std::fmt::Debug;
 
 fn main() {
-    let mut ll: LinkedList<i32> = LinkedList::new();
-//    ll.add(10);
-//    ll.add(20);
-//    ll.add(30);
-//    ll.add(40);
-//    ll.add(50);
-
-//    println!("{:?}", ll.get_data_from_position(0));
-//    println!("{:?}", ll.get_data_from_position(0));
-//    println!("{:?}", ll.get_data_from_position(2));
-//    println!("{:?}", ll.get_data_from_position(3));
-    let mut ll: LinkedList<i32> = LinkedList::new();
-    ll.add(2);
-    ll.add(3);
-    ll.add(10);
-    ll.change_order(3, 0);
-//    assert_eq!(ll.get_data_from_position(0).unwrap(), 3);
-//    assert_eq!(ll.get_data_from_position(1).unwrap(), 2);
-    ll.change_order(10, 0);
-//    assert_eq!(ll.get_data_from_position(0).unwrap(), 10);
-//    assert_eq!(ll.get_data_from_position(2).unwrap(), 2);
-//    assert_eq!(ll.get_data_from_position(0).unwrap(), 10);
-//    assert_eq!(ll.get_data_from_position(1).unwrap(), 3);
-//    println!("0: {:?}, 1: {:?}, 2: {:?}, 3: {:?}", ll.get_data_from_position(0), ll.get_data_from_position(1), ll.get_data_from_position(2), ll.get_data_from_position(3));
-
-    ll.add(25);
-//    println!("0: {:?}, 1: {:?}, 2: {:?}, 3: {:?}", ll.get_data_from_position(0), ll.get_data_from_position(1), ll.get_data_from_position(2), ll.get_data_from_position(3));
-
-//    println!("{:?}", ll.get_data_from_position(1));
-    // assert_eq!(ll.get_data_from_position(3).unwrap(), 25);
-
-    let d2 = ll.get_data_from_position(ll.len() - 2).unwrap();
-    ll.change_order(ll.get_data_from_position(ll.len() - 1).unwrap(), 2);
-//    println!("0: {:?}, 1: {:?}, 2: {:?}, 3: {:?}", ll.get_data_from_position(0), ll.get_data_from_position(1), ll.get_data_from_position(2), ll.get_data_from_position(3));
-    // assert_eq!(ll.get_data_from_position(ll.len() - 1).unwrap(), d2);
-
-    ll.add(40);
-    let d3 = ll.get_data_from_position(ll.len() - 1).unwrap();
-//    println!("0: {:?}, 1: {:?}, 2: {:?}, 3: {:?}, 4: {:?}", ll.get_data_from_position(0), ll.get_data_from_position(1), ll.get_data_from_position(2), ll.get_data_from_position(3), ll.get_data_from_position(4));
-//    ll.change_order(ll.get_data_from_position(1).unwrap(), ll.len() - 1);
-//    println!("0: {:?}, 1: {:?}, 2: {:?}, 3: {:?}, 4: {:?}", ll.get_data_from_position(0), ll.get_data_from_position(1), ll.get_data_from_position(2), ll.get_data_from_position(3), ll.get_data_from_position(4));
-//    ll.change_order(ll.get_data_from_position(1).unwrap(), 2);
-//    println!("0: {:?}, 1: {:?}, 2: {:?}, 3: {:?}, 4: {:?}", ll.get_data_from_position(0), ll.get_data_from_position(1), ll.get_data_from_position(2), ll.get_data_from_position(3), ll.get_data_from_position(4));
-//    ll.change_order(ll.get_data_from_position(3).unwrap(), 0);
-//    println!("0: {:?}, 1: {:?}, 2: {:?}, 3: {:?}, 4: {:?}", ll.get_data_from_position(0), ll.get_data_from_position(1), ll.get_data_from_position(2), ll.get_data_from_position(3), ll.get_data_from_position(4));
-//    ll.change_order(ll.get_data_from_position(1).unwrap(), 4);
-//    println!("0: {:?}, 1: {:?}, 2: {:?}, 3: {:?}, 4: {:?}", ll.get_data_from_position(0), ll.get_data_from_position(1), ll.get_data_from_position(2), ll.get_data_from_position(3), ll.get_data_from_position(4));
-
-    println!("0: {:?}, 1: {:?}, 2: {:?}, 3: {:?}, 4: {:?}", ll.get_data_from_position(0), ll.get_data_from_position(1), ll.get_data_from_position(2), ll.get_data_from_position(3), ll.get_data_from_position(4));
-    ll.change_order(ll.get_data_from_position(0).unwrap(), 4);
-    println!("0: {:?}, 1: {:?}, 2: {:?}, 3: {:?}, 4: {:?}", ll.get_data_from_position(0), ll.get_data_from_position(1), ll.get_data_from_position(2), ll.get_data_from_position(3), ll.get_data_from_position(4));
-    ll.change_order(ll.get_data_from_position(4).unwrap(), 0);
-    println!("0: {:?}, 1: {:?}, 2: {:?}, 3: {:?}, 4: {:?}", ll.get_data_from_position(0), ll.get_data_from_position(1), ll.get_data_from_position(2), ll.get_data_from_position(3), ll.get_data_from_position(4));
-
-
+//    let mut ll: LinkedList<i32> = LinkedList::new();
+////    ll.add(10);
+////    ll.add(20);
+////    ll.add(30);
+////    ll.add(40);
+////    ll.add(50);
+//
+////    println!("{:?}", ll.get_data_from_position(0));
+////    println!("{:?}", ll.get_data_from_position(0));
+////    println!("{:?}", ll.get_data_from_position(2));
+////    println!("{:?}", ll.get_data_from_position(3));
+//    let mut ll: LinkedList<i32> = LinkedList::new();
 //    ll.add(2);
 //    ll.add(3);
 //    ll.add(10);
+//    ll.change_order(3, 0);
+////    assert_eq!(ll.get_data_from_position(0).unwrap(), 3);
+////    assert_eq!(ll.get_data_from_position(1).unwrap(), 2);
+//    ll.change_order(10, 0);
+////    assert_eq!(ll.get_data_from_position(0).unwrap(), 10);
+////    assert_eq!(ll.get_data_from_position(2).unwrap(), 2);
+////    assert_eq!(ll.get_data_from_position(0).unwrap(), 10);
+////    assert_eq!(ll.get_data_from_position(1).unwrap(), 3);
+////    println!("0: {:?}, 1: {:?}, 2: {:?}, 3: {:?}", ll.get_data_from_position(0), ll.get_data_from_position(1), ll.get_data_from_position(2), ll.get_data_from_position(3));
+//
 //    ll.add(25);
-//    ll.add(1);
-//    ll.add(15);
-//    println!("0: {:?}, 1: {:?}, 2: {:?}, 3: {:?}, 4: {:?}, 5: {:?}", ll.get_data_from_position(0), ll.get_data_from_position(1), ll.get_data_from_position(2), ll.get_data_from_position(3), ll.get_data_from_position(4), ll.get_data_from_position(5));
+////    println!("0: {:?}, 1: {:?}, 2: {:?}, 3: {:?}", ll.get_data_from_position(0), ll.get_data_from_position(1), ll.get_data_from_position(2), ll.get_data_from_position(3));
+//
+////    println!("{:?}", ll.get_data_from_position(1));
+//    // assert_eq!(ll.get_data_from_position(3).unwrap(), 25);
+//
+//    let d2 = ll.get_data_from_position(ll.len() - 2).unwrap();
+//    ll.change_order(ll.get_data_from_position(ll.len() - 1).unwrap(), 2);
+////    println!("0: {:?}, 1: {:?}, 2: {:?}, 3: {:?}", ll.get_data_from_position(0), ll.get_data_from_position(1), ll.get_data_from_position(2), ll.get_data_from_position(3));
+//    // assert_eq!(ll.get_data_from_position(ll.len() - 1).unwrap(), d2);
+//
+//    ll.add(40);
+//    let d3 = ll.get_data_from_position(ll.len() - 1).unwrap();
+////    println!("0: {:?}, 1: {:?}, 2: {:?}, 3: {:?}, 4: {:?}", ll.get_data_from_position(0), ll.get_data_from_position(1), ll.get_data_from_position(2), ll.get_data_from_position(3), ll.get_data_from_position(4));
+////    ll.change_order(ll.get_data_from_position(1).unwrap(), ll.len() - 1);
+////    println!("0: {:?}, 1: {:?}, 2: {:?}, 3: {:?}, 4: {:?}", ll.get_data_from_position(0), ll.get_data_from_position(1), ll.get_data_from_position(2), ll.get_data_from_position(3), ll.get_data_from_position(4));
+////    ll.change_order(ll.get_data_from_position(1).unwrap(), 2);
+////    println!("0: {:?}, 1: {:?}, 2: {:?}, 3: {:?}, 4: {:?}", ll.get_data_from_position(0), ll.get_data_from_position(1), ll.get_data_from_position(2), ll.get_data_from_position(3), ll.get_data_from_position(4));
+////    ll.change_order(ll.get_data_from_position(3).unwrap(), 0);
+////    println!("0: {:?}, 1: {:?}, 2: {:?}, 3: {:?}, 4: {:?}", ll.get_data_from_position(0), ll.get_data_from_position(1), ll.get_data_from_position(2), ll.get_data_from_position(3), ll.get_data_from_position(4));
+////    ll.change_order(ll.get_data_from_position(1).unwrap(), 4);
+////    println!("0: {:?}, 1: {:?}, 2: {:?}, 3: {:?}, 4: {:?}", ll.get_data_from_position(0), ll.get_data_from_position(1), ll.get_data_from_position(2), ll.get_data_from_position(3), ll.get_data_from_position(4));
+//
+//    println!("0: {:?}, 1: {:?}, 2: {:?}, 3: {:?}, 4: {:?}", ll.get_data_from_position(0), ll.get_data_from_position(1), ll.get_data_from_position(2), ll.get_data_from_position(3), ll.get_data_from_position(4));
+//    ll.change_order(ll.get_data_from_position(0).unwrap(), 4);
+//    println!("0: {:?}, 1: {:?}, 2: {:?}, 3: {:?}, 4: {:?}", ll.get_data_from_position(0), ll.get_data_from_position(1), ll.get_data_from_position(2), ll.get_data_from_position(3), ll.get_data_from_position(4));
+//    ll.change_order(ll.get_data_from_position(4).unwrap(), 0);
+//    println!("0: {:?}, 1: {:?}, 2: {:?}, 3: {:?}, 4: {:?}", ll.get_data_from_position(0), ll.get_data_from_position(1), ll.get_data_from_position(2), ll.get_data_from_position(3), ll.get_data_from_position(4));
+//
+    let mut ll: LinkedList<i32> = LinkedList::new();
+    ll.add(2);
+    ll.add(3);
+    ll.add(4);
+    println!("0: {:?}, 1: {:?}, 2: {:?}, 3: {:?}, 4: {:?}", ll.get_data_from_position(0), ll.get_data_from_position(1), ll.get_data_from_position(2), ll.get_data_from_position(3), ll.get_data_from_position(4));
+    ll.remove(2);
+    println!("remove: 2, 0: {:?}, 1: {:?}, 2: {:?}, 3: {:?}, 4: {:?}", ll.get_data_from_position(0), ll.get_data_from_position(1), ll.get_data_from_position(2), ll.get_data_from_position(3), ll.get_data_from_position(4));
 
+    ll.add(5);
+    ll.add(6);
+    println!("                       0: {:?}, 1: {:?}, 2: {:?}, 3: {:?}, 4: {:?}", ll.get_data_from_position(0), ll.get_data_from_position(1), ll.get_data_from_position(2), ll.get_data_from_position(3), ll.get_data_from_position(4));
+    ll.change_order(ll.get_data_from_position(0).unwrap(), ll.len() - 1);
+    println!("change_order: 0 -> last, 0: {:?}, 1: {:?}, 2: {:?}, 3: {:?}, 4: {:?}", ll.get_data_from_position(0), ll.get_data_from_position(1), ll.get_data_from_position(2), ll.get_data_from_position(3), ll.get_data_from_position(4));
+
+
+    ll.add(20);
+    println!("0: {:?}, 1: {:?}, 2: {:?}, 3: {:?}, 4: {:?}", ll.get_data_from_position(0), ll.get_data_from_position(1), ll.get_data_from_position(2), ll.get_data_from_position(3), ll.get_data_from_position(4));
+
+    ll.add(40);
+    println!("add: 40                , 0: {:?}, 1: {:?}, 2: {:?}, 3: {:?}, 4: {:?}, 5: {:?}, 6: {:?}", ll.get_data_from_position(0), ll.get_data_from_position(1), ll.get_data_from_position(2), ll.get_data_from_position(3), ll.get_data_from_position(4), ll.get_data_from_position(5), ll.get_data_from_position(6));
+    let d6 = ll.get_data_from_position(ll.len() - 1).unwrap();
+    let d7 = ll.get_data_from_position(ll.len() - 2).unwrap();
+    ll.change_order(ll.get_data_from_position(ll.len() - 1).unwrap(), 0);
+    println!("change_order: last -> 0, 0: {:?}, 1: {:?}, 2: {:?}, 3: {:?}, 4: {:?}, 5: {:?}, 6: {:?}", ll.get_data_from_position(0), ll.get_data_from_position(1), ll.get_data_from_position(2), ll.get_data_from_position(3), ll.get_data_from_position(4), ll.get_data_from_position(5), ll.get_data_from_position(6));
+
+    ll.change_order(ll.get_data_from_position(0).unwrap(), ll.len() - 1);
+    println!("change_order: 0 -> last, 0: {:?}, 1: {:?}, 2: {:?}, 3: {:?}, 4: {:?}, 5: {:?}, 6: {:?}", ll.get_data_from_position(0), ll.get_data_from_position(1), ll.get_data_from_position(2), ll.get_data_from_position(3), ll.get_data_from_position(4), ll.get_data_from_position(5), ll.get_data_from_position(6));
+
+    ll.add(70);
+    println!("add: 70,               0: {:?}, 1: {:?}, 2: {:?}, 3: {:?}, 4: {:?}, 5: {:?}, 6: {:?}", ll.get_data_from_position(0), ll.get_data_from_position(1), ll.get_data_from_position(2), ll.get_data_from_position(3), ll.get_data_from_position(4), ll.get_data_from_position(5), ll.get_data_from_position(6));
+
+    ll.remove(5);
+    println!("remove: 5            , 0: {:?}, 1: {:?}, 2: {:?}, 3: {:?}, 4: {:?}, 5: {:?}, 6: {:?}", ll.get_data_from_position(0), ll.get_data_from_position(1), ll.get_data_from_position(2), ll.get_data_from_position(3), ll.get_data_from_position(4), ll.get_data_from_position(5), ll.get_data_from_position(6));
+    ll.change_order(ll.get_data_from_position(1).unwrap(), ll.len() - 3);
+    println!("change_order: 1 -> {:?}, 0: {:?}, 1: {:?}, 2: {:?}, 3: {:?}, 4: {:?}, 5: {:?}, 6: {:?}", ll.len() - 3, ll.get_data_from_position(0), ll.get_data_from_position(1), ll.get_data_from_position(2), ll.get_data_from_position(3), ll.get_data_from_position(4), ll.get_data_from_position(5), ll.get_data_from_position(6));
+
+    ll.remove(70);
+    println!("remove: 70            , 0: {:?}, 1: {:?}, 2: {:?}, 3: {:?}, 4: {:?}, 5: {:?}, 6: {:?}", ll.get_data_from_position(0), ll.get_data_from_position(1), ll.get_data_from_position(2), ll.get_data_from_position(3), ll.get_data_from_position(4), ll.get_data_from_position(5), ll.get_data_from_position(6));
+    ll.change_order(ll.get_data_from_position(ll.len() - 1).unwrap(), ll.len() - 3);
+    println!("change_order: {:?} -> {:?}, 0: {:?}, 1: {:?}, 2: {:?}, 3: {:?}, 4: {:?}, 5: {:?}, 6: {:?}", ll.len() - 1, ll.len() - 3, ll.get_data_from_position(0), ll.get_data_from_position(1), ll.get_data_from_position(2), ll.get_data_from_position(3), ll.get_data_from_position(4), ll.get_data_from_position(5), ll.get_data_from_position(6));
+    ll.change_order(ll.get_data_from_position(ll.len() - 1).unwrap(), ll.len() - 3);
+    println!("change_order: {:?} -> {:?}, 0: {:?}, 1: {:?}, 2: {:?}, 3: {:?}, 4: {:?}, 5: {:?}, 6: {:?}", ll.len() - 1, ll.len() - 3, ll.get_data_from_position(0), ll.get_data_from_position(1), ll.get_data_from_position(2), ll.get_data_from_position(3), ll.get_data_from_position(4), ll.get_data_from_position(5), ll.get_data_from_position(6));
 }
 
 #[test]
@@ -92,6 +125,23 @@ fn remove() {
     assert_eq!(ll.len(), 2);
     assert_eq!(ll.get_data_from_position(0).unwrap(), 3);
     assert_eq!(ll.get_data_from_position(1).unwrap(), 2);
+
+    ll.add(20);
+    assert_eq!(ll.get_data_from_position(2).unwrap(), 20);
+
+    ll.add(100);
+    let d8 = ll.get_data_from_position(ll.len() - 1).unwrap();
+    let d9 = ll.get_data_from_position(ll.len() - 2).unwrap();
+    ll.change_order(ll.get_data_from_position(ll.len() - 1).unwrap(), 0);
+    assert_eq!(ll.get_data_from_position(0).unwrap(), d8);
+    assert_eq!(ll.get_data_from_position(ll.len() - 1).unwrap(), d9);
+
+    ll.remove(3);
+    let d10 = ll.get_data_from_position(ll.len() - 1).unwrap();
+    let d11 = ll.get_data_from_position(ll.len() - 2).unwrap();
+    ll.change_order(ll.get_data_from_position(ll.len() - 1).unwrap(), 0);
+    assert_eq!(ll.get_data_from_position(0).unwrap(), d10);
+    assert_eq!(ll.get_data_from_position(ll.len() - 1).unwrap(), d11);
 }
 
 #[test]
@@ -220,6 +270,11 @@ impl<T> LinkedList<T>
         if self.len() == 0 {
             return Err("LinkedList length is 0.".to_string());
         }
+
+        if self.get_position_from_data(data).is_none() {
+            return Err("Data is not existing.".to_string());
+        }
+
         self.count -= 1;
         // 残った最後の一つの要素だった場合
         if self.count == 0 {
@@ -237,20 +292,14 @@ impl<T> LinkedList<T>
 
                 if pointer != head && pointer != tail { // headとtailの要素が今回の削除対象ではない場合
                     if let Some(prev) = (*pointer).prev {
-                        // prevのnextを更新
-                        // (*prev).next = (*pointer).next;
-                        replace(&mut (*prev).next, replace(&mut (*pointer).next, None));
+                        replace(&mut (*prev).next, (*pointer).next);
                     }
                     if let Some(next) = (*pointer).next {
-                        replace(&mut (*next).prev, replace(&mut (*pointer).prev, None));
+                        replace(&mut (*next).prev, (*pointer).prev);
                     }
-                    // 後処理(これは必要なのか？)
-//                    replace(&mut (*pointer).prev, None);
-//                    replace(&mut (*pointer).next, None);
                     (*pointer).prev = None;
                     (*pointer).next = None;
                 } else if pointer == head { // headが削除対象の場合
-                    // *self.head = (*pointer).next;
                     replace(&mut self.head, replace(&mut (*pointer).next, None));
                     replace(&mut (*self.head.unwrap()).prev, None);
                 } else if pointer == tail { // tailが削除対象の場合
@@ -298,7 +347,6 @@ impl<T> LinkedList<T>
                     return self.add(data);
                 }
             } else if order == self.len() - 1 { // tailになる場合
-                println!("tail");
                 if position == 0 { // ポジションを変更したいNodeの元の位置がheadだった場合
                     self.head = (*src_node_ptr).next;
                 }
