@@ -1,0 +1,7 @@
+[package]
+name = "toy-linked-list"
+version = "0.1.0"
+authors = ["Hagi013 <generativepassion@gmail.com>"]
+edition = "2018"
+
+[dependencies]
