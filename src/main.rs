@@ -98,6 +98,12 @@ fn main() {
     println!("change_order: {:?} -> {:?}, 0: {:?}, 1: {:?}, 2: {:?}, 3: {:?}, 4: {:?}, 5: {:?}, 6: {:?}", ll.len() - 1, ll.len() - 3, ll.get_data_from_position(0), ll.get_data_from_position(1), ll.get_data_from_position(2), ll.get_data_from_position(3), ll.get_data_from_position(4), ll.get_data_from_position(5), ll.get_data_from_position(6));
     ll.change_order(ll.get_data_from_position(ll.len() - 1).unwrap(), ll.len() - 3);
     println!("change_order: {:?} -> {:?}, 0: {:?}, 1: {:?}, 2: {:?}, 3: {:?}, 4: {:?}, 5: {:?}, 6: {:?}", ll.len() - 1, ll.len() - 3, ll.get_data_from_position(0), ll.get_data_from_position(1), ll.get_data_from_position(2), ll.get_data_from_position(3), ll.get_data_from_position(4), ll.get_data_from_position(5), ll.get_data_from_position(6));
+
+
+    let mut ll2: LinkedList<i32> = LinkedList::new();
+    ll2.add(2);
+    ll2.add(3);
+    println!("change_order: 0: {:?}, 1: {:?}", ll2.get_data_from_position(0), ll2.get_data_from_position(1));
 }
 
 #[test]
@@ -188,7 +194,8 @@ fn change_order() {
 }
 
 
-#[derive(Debug)]
+use std::boxed;
+#[derive(Copy, Clone, Debug)]
 struct LinkedListNode<T>
     where
         T: Copy,
@@ -245,10 +252,30 @@ impl<T> LinkedList<T>
         self.count
     }
 
+    pub fn push_front(&mut self, data: T) -> Result<(), String> {
+        unsafe {
+            let node: *mut LinkedListNode<T> = boxed::Box::into_raw(boxed::Box::new(LinkedListNode::new(data)));
+            if self.len() == 0 {
+                self.head = Some(node);
+                self.tail = Some(node);
+                (*node).prev = None;
+                (*node).next = None;
+            } else {
+                let head = self.head.ok_or("LinkedList's head is none.".to_string())?;
+                self.head = Some(node);
+                (*head).prev = Some(node);
+                (*node).next = Some(head);
+                (*node).prev = None;
+            }
+            self.count += 1;
+            return Ok(());
+        }
+    }
+
     // addするときは一番最後に入れる
     pub fn add(&mut self, data: T) -> Result<(), String> {
         unsafe {
-            let node: *mut LinkedListNode<T> = Box::into_raw(Box::new(LinkedListNode::new(data)));
+            let node: *mut LinkedListNode<T> = boxed::Box::into_raw(boxed::Box::new(LinkedListNode::new(data)));
             if self.len() == 0 {
                 self.head = Some(node);
                 self.tail = Some(node);
@@ -358,20 +385,24 @@ impl<T> LinkedList<T>
                 return Ok(());
             } else {
                 // 挿入したい場所における入れ替え操作
+                // 1. 入れ替えたい先のNodeとその前の順番のNodeを取得
                 let dest_order_node_ptr: *mut LinkedListNode<T> = self.get_pointer_from_index(order)
                     .ok_or("idx argument to change_order may be out of bound.".to_string())?;
                 let dest_order_prev_node_ptr = (*dest_order_node_ptr).prev
                     .ok_or("change_order target order node's state is broken in LinkedList.".to_string())?;
 
+                // 2. 入れ替えたいNodeの紐付けを行う
                 (*dest_order_node_ptr).prev = Some(src_node_ptr);
                 (*dest_order_prev_node_ptr).next = Some(src_node_ptr);
 
+                // 3. 入れ替えたいNodeの元の位置がheadもしくはtailだった場合の処置
                 if position == self.len() - 1 { // ポジションを変更したいNodeの元の位置がtailだった場合
                     self.tail = (*src_node_ptr).prev;
                 } else if position == 0 { // ポジションを変更したいNodeの元の位置がheadだった場合
                     self.head = (*src_node_ptr).next;
                 }
 
+                // 4. 入れ替えたいNodeの前後の紐付けを行う
                 (*src_node_ptr).next = Some(dest_order_node_ptr);
                 (*src_node_ptr).prev = Some(dest_order_prev_node_ptr);
                 return Ok(());
@@ -465,3 +496,14 @@ impl<T> LinkedList<T>
         return Some(node)
     }
 }
+
+//#[cfg(test)]
+//mod test {
+//    use self::util::linked_list::LinkedList;
+//
+//    #[test]
+//    fn new() {
+//        let ll: LinkedList<i32> = LinkedList::new();
+//        assert_eq!(ll.len(), 0);
+//    }
+//}
